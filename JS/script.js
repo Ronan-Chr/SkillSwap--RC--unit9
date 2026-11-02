@@ -133,7 +133,8 @@ skillForm.addEventListener("submit", async function(event) {
     title: document.getElementById("skill-title").value.trim(),
     category: document.getElementById("skill-category").value,
     price: parseFloat(document.getElementById("skill-price").value),
-    description: document.getElementById("skill-description").value.trim()
+    description: document.getElementById("skill-description").value.trim(),
+    provider: document.getElementById("skill-provider").value.trim()
   };
 
   formStatus.textContent = "Saving...";
