@@ -174,7 +174,7 @@ main {
 }
 
 .filter-buttons button,
-#calculate-btn, #match-btn {
+#calculate-btn, #match-btn, #skill-form button {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -187,7 +187,7 @@ main {
 }
 
 .filter-buttons button:hover,
-#calculate-btn:hover, #match-btn:hover {
+#calculate-btn:hover, #match-btn:hover, #skill-form button:hover {
   color: var(--stamp);
   border-color: var(--stamp);
 }
@@ -249,4 +249,35 @@ main {
 .tools .calculator {
   border-top: none;
   max-width: none;
+}
+/* Add a Skill form: labels in one column, inputs lined up in the next */
+#skill-form {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 10px 12px;
+  align-items: center;
+}
+
+#skill-form input,
+#skill-form textarea {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+  padding: 8px;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#skill-form label[for="skill-description"] {
+  align-self: start;
+  padding-top: 8px;
+}
+
+#skill-form textarea {
+  resize: vertical;
+}
+
+#skill-form button {
+  grid-column: 1 / -1;
 }

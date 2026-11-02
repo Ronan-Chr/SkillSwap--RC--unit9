@@ -36,50 +36,10 @@
                         <!-- Skill cards: hardcoded tutor listings (static version of SSRC-7 search results) -->
             <div class = "filter-buttons">
                 <button data-category="All">All</button>
-                <button data-category="Programming">Programming</button>
-                <button data-category="Music">Music</button>
-                <button data-category="Career">Career</button>
+                <!-- Category buttons are generated from the API data in JS/script.js -->
             </div>             
             <div class="card-grid">
-                <article class="card" data-info="Availability: Mon/Wed 3-6 PM. Open to trade.">
-                    <p class="label">Programming</p>
-                    <h3>Python Tutoring</h3>
-                    <p class="card-desc">Loops, functions, and your first working script.</p>
-                    <div class="card-footer">
-                        <span class="provider">Ronan C.</span>
-                        <span class="price">$20/hr</span>
-                    </div>
-                </article>
-
-                <article class="card" data-info="Availability: Tue/Thu 4-7 PM.">
-                    <p class="label">Music</p>
-                    <h3>Guitar Lessons</h3>
-                    <p class="card-desc">Learn chords, strumming techniques, and play your first song.</p>
-                    <div class="card-footer">
-                        <span class="provider">Maya R.</span>
-                        <span class="price">$15/hr</span>
-                    </div>
-                </article>
-
-                <article class="card" data-info="Availability: Tue/Thu 4-7 PM.">
-                    <p class="label">Programming</p>
-                    <h3>Web Development</h3>
-                    <p class="card-desc">Build responsive websites with HTML, CSS, and JavaScript.</p>
-                    <div class="card-footer">
-                        <span class="provider">Alex K.</span>
-                        <span class="price">$25/hr</span>
-                    </div>
-                </article>
-
-                <article class="card" data-info="Availability: Fri 1-5 PM. Open to trade.">
-                    <p class="label">Career</p>
-                    <h3>Resume Review</h3>
-                    <p class="card-desc">Get feedback on your resume and improve your job search strategy.</p>
-                    <div class="card-footer">
-                        <span class="provider">Jordan T.</span>
-                        <span class="price">$0/hr</span>
-                    </div>
-                </article>
+                <!-- Cards are rendered by JS/script.js from the backend API -->
             </div>
         </section>
 
@@ -101,14 +61,31 @@
             <label for="match-category"> Category: </label>
             <select id="match-category" name="match-category">
                 <option value="All">All</option>
-                <option value="Programming">Programming</option>
-                <option value="Music">Music</option>
-                <option value="Career">Career</option>
             </select>
             <label for="max-price"> Maximum Price: </label>
             <input type="number" id="max-price" name="max-price" min="0" step="1">
             <button id="match-btn">Find Skills </button>
             <p id="match-results"></p>
+        </section>
+
+        <!-- Add a Skill (saves to the database through the API) -->
+        <section class="calculator">
+            <h2 class="label">Add a Skill</h2>
+            <form id="skill-form">
+                <label for="skill-provider"> Your Name: </label>
+                <input type="text" id="skill-provider" name="provider" placeholder="e.g. Ronan C." required>
+                <label for="skill-title"> Title: </label>
+                <input type="text" id="skill-title" name="title" required>
+                <label for="skill-category"> Category: </label>
+                <input type="text" id="skill-category" name="category" list="category-options" placeholder="e.g. Cooking" required>
+                <datalist id="category-options"></datalist>
+                <label for="skill-price"> Price ($/hr): </label>
+                <input type="number" id="skill-price" name="price" min="0" step="1" required>
+                <label for="skill-description"> Description: </label>
+                <textarea id="skill-description" name="description" rows="3" required></textarea>
+                <button type="submit">Add Skill</button>
+            </form>
+            <p id="form-status"></p>
         </section>
         </div>
     </main>
@@ -121,6 +98,7 @@
 
 <!-- links JS last -->
     <script src="skillswap-functions.js"></script>
+    <script src="JS/api-service.js"></script>
     <script src="JS/script.js"></script>
 </body>
 </html>
