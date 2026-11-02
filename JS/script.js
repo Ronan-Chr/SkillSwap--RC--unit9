@@ -51,21 +51,45 @@ async function loadSkills() {
       return { ...skill, price: parseFloat(skill.price) };
     });
     renderSkills(skills);
+    renderCategoryControls();
   } catch (error) {
     cardGrid.innerHTML = "<p>Couldn't load skills. Is the backend running on port 3000?</p>";
   }
 }
 
-// Filter buttons: filter the API data and re-render
-let filterButtons = document.querySelectorAll(".filter-buttons button");
+// Build filter buttons, matcher options, and form suggestions from the categories in the database
+function renderCategoryControls() {
+  const categories = [...new Set(skills.map(function(skill) { return skill.category; }))].sort();
 
-filterButtons.forEach(function(button) {
-  button.addEventListener("click", function() {
-    let category = button.dataset.category;
-    let result = filterSkillsByCategory(skills, category);
-    renderSkills(result);
+  const filterBox = document.querySelector(".filter-buttons");
+  filterBox.innerHTML = "";
+  ["All"].concat(categories).forEach(function(category) {
+    const button = makeEl("button", "", category);
+    button.dataset.category = category;
+    button.addEventListener("click", function() {
+      renderSkills(filterSkillsByCategory(skills, category));
+    });
+    filterBox.appendChild(button);
   });
-});
+
+  const matchSelect = document.getElementById("match-category");
+  const selected = matchSelect.value;
+  matchSelect.innerHTML = "";
+  ["All"].concat(categories).forEach(function(category) {
+    const option = makeEl("option", "", category);
+    option.value = category;
+    matchSelect.appendChild(option);
+  });
+  if (["All"].concat(categories).includes(selected)) matchSelect.value = selected;
+
+  const datalist = document.getElementById("category-options");
+  datalist.innerHTML = "";
+  categories.forEach(function(category) {
+    const option = document.createElement("option");
+    option.value = category;
+    datalist.appendChild(option);
+  });
+}
 
 // Cost calculator (unchanged)
 let calculateButton = document.getElementById("calculate-btn");

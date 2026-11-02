@@ -36,9 +36,7 @@
                         <!-- Skill cards: hardcoded tutor listings (static version of SSRC-7 search results) -->
             <div class = "filter-buttons">
                 <button data-category="All">All</button>
-                <button data-category="Programming">Programming</button>
-                <button data-category="Music">Music</button>
-                <button data-category="Career">Career</button>
+                <!-- Category buttons are generated from the API data in JS/script.js -->
             </div>             
             <div class="card-grid">
                 <!-- Cards are rendered by JS/script.js from the backend API -->
@@ -63,9 +61,6 @@
             <label for="match-category"> Category: </label>
             <select id="match-category" name="match-category">
                 <option value="All">All</option>
-                <option value="Programming">Programming</option>
-                <option value="Music">Music</option>
-                <option value="Career">Career</option>
             </select>
             <label for="max-price"> Maximum Price: </label>
             <input type="number" id="max-price" name="max-price" min="0" step="1">
@@ -80,11 +75,8 @@
                 <label for="skill-title"> Title: </label>
                 <input type="text" id="skill-title" name="title" required>
                 <label for="skill-category"> Category: </label>
-                <select id="skill-category" name="category" required>
-                    <option value="Programming">Programming</option>
-                    <option value="Music">Music</option>
-                    <option value="Career">Career</option>
-                </select>
+                <input type="text" id="skill-category" name="category" list="category-options" placeholder="e.g. Cooking" required>
+                <datalist id="category-options"></datalist>
                 <label for="skill-price"> Price ($/hr): </label>
                 <input type="number" id="skill-price" name="price" min="0" step="1" required>
                 <label for="skill-description"> Description: </label>
